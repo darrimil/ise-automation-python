@@ -1,0 +1,34 @@
+# NADs.yaml
+#
+# This file contains a list of NADs needed to be created in ISE.
+
+# List your Network Access Devices (NADs) and descriptions here.  
+# I used a curl command to get a json result from a get network device ERS API. Then I used json to yaml tools to convert json to yaml
+
+NADS:
+  - name: DC-C4K-Sup8E  # name of the Network Access Device
+    desc: DC-C4K-Sup8E used as access  # description for the NAD
+    ip_addr:
+    - ipaddress: 172.23.41.44
+      mask: 32
+    auth_settings:
+        networkProtocol: RADIUS
+        radiusSharedSecret: cisco123 
+    trustsec:
+      deviceAuthenticationSettings:
+         sgaDeviceId: DC-C4K-Sup8E
+         sgaDevicePassword: cisco123
+      sgaNotificationAndUpdates:
+         downlaodEnvironmentDataEveryXSeconds: 86400
+         downlaodPeerAuthorizationPolicyEveryXSeconds: 86400
+         reAuthenticationEveryXSeconds: 86400
+         downloadSGACLListsEveryXSeconds: 86400
+         otherSGADevicesToTrustThisDevice: true
+         sendConfigurationToDevice: true
+         sendConfigurationToDeviceUsing: ENABLE_USING_COA
+         coaSourceHost: ise-34-cdp.cts.local
+      deviceConfigurationDeployment:
+         includeWhenDeployingSGTUpdates: true
+         enableModePassword: nbv_1234
+         execModePassword: nbv_1234
+         execModeUsername: admin

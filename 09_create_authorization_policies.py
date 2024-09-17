@@ -32,11 +32,11 @@ api = IdentityServicesEngineAPI(username=data['ise_username'],
 # First we have to get the information for all network access policy sets
 policysets = api.network_access_policy_set.get_network_access_policy_sets()
 
-# Then we have to pull the policy ID for the Default policy set
+# Then we have to pull the policy ID for the Default policy set. The use of 0 here assumes a clean install with no other Policy Set
 policyId = policysets.response.response[0].id
 
 # Then we use the policy ID to grab all of the network access authc rules
-rulesets = api.network_access_authentication_rules.get_network_access_authentication_rules(policy_id=policyId)
+rulesets = api.network_access_authorization_rules.get_network_access_authorization_rules(policy_id=policyId)
 
 # Now we need some condition and rule IDs
 # This is still stupid, everything is still stupid, I still hate JSON
@@ -56,11 +56,11 @@ dot1xruleId = [x['rule.id'] for x in rulesets.response.response if x['rule.name'
 # iterate through all of the condition children in the response to find the conditions that we want
 # 
 # I had to use try/except here because not every element had a "children" attribute, so we ignore those ones
-for z in range(len(rulesets.response.response)):
-    try:
-        wireddot1xcondId = [y['id'] for y in rulesets.response.response[z].rule.condition.children if y['name'] == 'Wired_802.1X']
-        wirelessdot1xcondId = [y['id'] for y in rulesets.response.response[z].rule.condition.children if y['name'] == 'Wireless_802.1X']
-    except AttributeError: pass
+# for z in range(len(rulesets.response.response)):
+#     try:
+#         wireddot1xcondId = [y['id'] for y in rulesets.response.response[z].rule.condition.children if y['name'] == 'Wired_802.1X']
+#         wirelessdot1xcondId = [y['id'] for y in rulesets.response.response[z].rule.condition.children if y['name'] == 'Wireless_802.1X']
+#     except AttributeError: pass
 
 for policies in policy['policies']:
 
@@ -80,38 +80,39 @@ for policies in policy['policies']:
         }
     }
 
-    wirelesspolicyrule =  {
-        "default" : False,
-        "name" : policies['usergroup'] + "_users_wireless",
-        "rank" : 0,
-        "condition" : {
-            "conditionType" : "ConditionAndBlock",
-            "isNegate" : False,
-            "children" : [ {
-                "conditionType" : "ConditionAttributes",
-                "isNegate" : False,
-                "dictionaryName" : "IdentityGroup",
-                "attributeName" : "Name",
-                "operator" : "equals",
-                "attributeValue" : "User Identity Groups:" + policies['usergroup']
-                }, {
-                "conditionType" : "ConditionReference",
-                "isNegate" : False,
-                "name" : "Wireless_802.1X",
-                "id" : wirelessdot1xcondId[0],
-            } ]
-        }
-    }
+    # wirelesspolicyrule =  {
+    #     "default" : False,
+    #     "name" : policies['usergroup'] + "_users_wireless",
+    #     "rank" : 0,
+    #     "condition" : {
+    #         "conditionType" : "ConditionAndBlock",
+    #         "isNegate" : False,
+    #         "children" : [ {
+    #             "conditionType" : "ConditionAttributes",
+    #             "isNegate" : False,
+    #             "dictionaryName" : "IdentityGroup",
+    #             "attributeName" : "Name",
+    #             "operator" : "equals",
+    #             "attributeValue" : "User Identity Groups:" + policies['usergroup']
+    #             }, {
+    #             "conditionType" : "ConditionReference",
+    #             "isNegate" : False,
+    #             "name" : "Wireless_802.1X",
+    #             "id" : wirelessdot1xcondId[0],
+    #         } ]
+    #     }
+    #}
 
 # Create rules for both wireless and wired users because some of our devices expect different RADIUS attributes
-    api.network_access_authorization_rules.create_network_access_authorization_rule(policy_id=policyId,
-                                                                                    security_group=policies['sgt'],
-                                                                                    profile=[policies['policy'] + "_wireless"],
-                                                                                    rule=wirelesspolicyrule
-                                                                                    )
+    # api.network_access_authorization_rules.create_network_access_authorization_rule(policy_id=policyId,
+    #                                                                                 security_group=policies['sgt'],
+    #                                                                                 profile=[policies['policy'] + "_wireless"],
+    #                                                                                 rule=wirelesspolicyrule
+    #                                                                                 )
 
     api.network_access_authorization_rules.create_network_access_authorization_rule(policy_id=policyId,
                                                                                     security_group=policies['sgt'],
-                                                                                    profile=[policies['policy'] + "_wired"],
+                                                                                    profile=[policies['policy']],
+#                                                                                    profile=[policies['policy'] + "_wired"],
                                                                                     rule=wiredpolicyrule
                                                                                     )

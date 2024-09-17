@@ -33,5 +33,6 @@ api = IdentityServicesEngineAPI(username=data['ise_username'],
 for sgtlist in policy['sgtvars']:
         api.security_groups.create_security_group(name=sgtlist['sgtname'], 
                                                 description=sgtlist['sgtdesc'],
+                                                propogate_to_apic=False,
                                                 value=-1)
         print("Creating SGT:", sgtlist['sgtname'])

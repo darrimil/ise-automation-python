@@ -4,71 +4,119 @@
 
 # Default password for users - I may provide an override for this in the user list in the future
 
-default_password: "C1sco12345"
+default_password: "C!sco123"
 
 # List your group names and descriptions here.  
 # These will be read by 01_add_groups.yaml and 02_add_users.yaml
 
 usergroups:
-  - name: acct  # name of the internal identity group to be created
-    desc: Accounting for SSL  # description for the identity group
-  - name: finance
-    desc: Finance users for SSL
-  - name: hr
-    desc: Human Resources for SSL
-  - name: PCI
-    desc: PCI users for SSL
-  - name: assurance
-    desc: Assurance for SSL
-  - name: netadmin
-    desc: Network Admins for SSL
+  - name: Acct  # name of the internal identity group to be created
+    desc: Accounting Group added by automation  # description for the identity group
+  - name: Finance
+    desc: Finance Group added by automation
+  - name: Students
+    desc: Students Group added by automation
+  - name: Contractors
+    desc: Contractor Group added by automation
+  - name: Assurance
+    desc: Assurance Group added by automation
+  - name: Developers
+    desc: Developers Group added by automation
+# Commented out since 3.4 beta has Employee as an ISE group that can't be deleted
+#  - name: Employees
+#    desc: Employees Groups added by automation
+  - name: Faculty
+    desc: Faculty Group added by automation
+  - name: IP_Cameras
+    desc: IP Cameras Group added by automation
+  - name: NVR
+    desc: NVR Group added by automation
+  - name: PCI_Users
+    desc: PCI Users Group added by automation
+  - name: Printers
+    desc: Printers Group added by automation
+  - name: Research
+    desc: Research Group added by automation
+  - name: HR
+    desc: Human Resource Group added by automation
+ 
 
 # List your usernames here - the "groups:" field must match with one of the groups above
 # These will be read by 02_add_users.yaml
 
 userlist:
-  - name: acct1  # the actual username to be used for authentication
-    groups: acct  # the indentity group for the user - this should match one of the usergroups above
+  - name: lacct1  # the actual username to be used for authentication
+    groups: Acct  # the indentity group for the user - this should match one of the usergroups above
     firstname: Accounting  # first name for identification purposes
     lastname: User 1  # last name for identification purposes
     description: User added with automation  # description for the user (makes filtering easier)
-  - name: acct2
-    groups: acct
-    firstname: Accounting
-    lastname: User 2
-    description: User added with automation
-  - name: assur1
-    groups: assurance
-    firstname: Assurance
-    lastname: User 1
-    description: User added with automation
-  - name: assur2
-    groups: assurance
-    firstname: Assurance
-    lastname: User 2
-    description: User added with automation
-  - name: finance
-    groups: finance
+  - name: lfinance1
+    groups: Finance
     firstname: Finance
-    lastname: User
-    description: User added with automation
-  - name: hr1
-    groups: hr
-    firstname: HR
     lastname: User 1
     description: User added with automation
-  - name: hr2
-    groups: hr
-    firstname: HR
+  - name: lhr1
+    groups: HR
+    firstname: lhr1
+    lastname: User 1
+    description: User added with automation
+  - name: lhr2
+    groups: HR
+    firstname: lhr2
     lastname: User 2
     description: User added with automation
-  - name: netadmin
-    groups: netadmin
-    firstname: Network
-    lastname: Administrator
+  - name: ldeveloper1
+    groups: Developers
+    firstname: ldeveloper1
+    lastname: User 1
     description: User added with automation
-  - name: pci
-    groups: PCI
-    firstname: PCI
-    lastname: User
+  - name: lcontractor1
+    groups: Contractors
+    firstname: lcontrator1
+    lastname: User 1
     description: User added with automation
+  - name: lemployee1
+    groups: Employee
+    firstname: lemployee1
+    lastname: User 1
+    description: User added with automation
+  - name: lstudent1
+    groups: Students
+    firstname: lstudent1
+    lastname: User 1
+    description: User added with automation
+  - name: lnvr1
+    groups: NVR
+    firstname: lnvr1
+    lastname: User 1
+    description: User added with automation
+  - name: lpciuser1
+    groups: PCI_Users
+    firstname: lpciuser1
+    lastname: User 1
+    description: User added with automation
+  - name: lprinter1
+    groups: Printers
+    firstname: lprinter1
+    lastname: User 1
+    description: User added with automation
+  - name: lfaculty1
+    groups: Faculty
+    firstname: lfaculty1
+    lastname: User 1
+    description: User added with automation
+  - name: lresearch1
+    groups: Research
+    firstname: lresearch1
+    lastname: User 1
+    description: User added with automation
+  - name: lipcamera1
+    groups: IP_Cameras
+    firstname: lipcamera1
+    lastname: User 1
+    description: User added with automation
+  - name: darrimil
+    groups: Employee
+    firstname: Darrin
+    lastname: Miller
+    description: User added with automation    

@@ -10,36 +10,36 @@ sgtvars:  # Scalable Group Tags (SGTs) are defined here
   # - sgtname: Employees
   #   sgtnumb: "4"
   #   sgtdesc: Employee Security Group
-  # - sgtname: Contractors
-  #   sgtnumb: "5"
-  #   sgtdesc: Contractors Security Group
+  - sgtname: Contractors
+    sgtnumb: "5"
+    sgtdesc: Contractors Security Gorup
   # - sgtname: Guests
   #   sgtnumb: "6"
   #   sgtdesc: Guest Security Group
-  # - sgtname: Production_Users
-  #   sgtnumb: "7"
-  #   sgtdesc: Production User Security Group
+  - sgtname: Production_Users
+    sgtnumb: "7"
+    sgtdesc: Production User Security Group
   # - sgtname: Developers
   #   sgtnumb: "8"
   #   sgtdesc: Developer Security Group
   # - sgtname: Auditor
   #   sgtnumb: "9"
   #   sgtdesc: Auditor Security Group
-  # - sgtname: Point_of_Sale_Systems
-  #   sgtnumb: "10"
-  #   sgtdesc: Point of Sale Security Group
-  # - sgtname: Production_Servers
-  #   sgtnumb: "11"
-  #   sgtdesc: Production Servers Security Group
-  # - sgtname: Development_Servers
-  #   sgtnumb: "12"
-  #   sgtdesc: Development Server Security Group
-  # - sgtname: Test_Servers
-  #   sgtnumb: "13"
-  #   sgtdesc: Test ServersSecurity Group
-  # - sgtname: PCI_Servers
-  #   sgtnumb: "14"
-  #   sgtdesc: PCI Servers Security Group
+  - sgtname: Point_of_Sale_Systems
+    sgtnumb: "10"
+    sgtdesc: Point of Sale Security Group
+  - sgtname: Production_Servers
+    sgtnumb: "11"
+    sgtdesc: Production Servers Security Group
+  - sgtname: Development_Servers
+    sgtnumb: "12"
+    sgtdesc: Development Server Security Group
+  - sgtname: Test_Servers
+    sgtnumb: "13"
+    sgtdesc: Test ServersSecurity Group
+  - sgtname: PCI_Servers
+    sgtnumb: "14"
+    sgtdesc: PCI Servers Security Group
   # - sgtname: BYOD
   #   sgtnumb: "15"
   #   sgtdesc: BYOD Security Group
@@ -75,38 +75,38 @@ policies:  # settings defined here will be used to create authz profiles and rul
 #    vlan: Employee  # this will be the actual VLAN name on the switch
     sgt: Contractors  # this should match one of the SGTs defined above
   - policy: PermitAccess
-    usergroup: Employee
+    usergroup: 
 #    vlan: Campus
     sgt: Employees
   - policy: PermitAccess
     usergroup: PCI_Users
 #    vlan: Restricted
     sgt: PCI_Users
-  - policy: PermitAccess
+  - policy: Developers
     usergroup: Developers
 #    vlan: Restricted
     sgt: Developers
-  - policy: PermitAccess
+  - policy: Faculty
     usergroup: faculty
 #    vlan: Restricted
     sgt: Faculty
-  - policy: PermitAccess
+  - policy: Students
     usergroup: Students
 #    vlan: Restricted
     sgt: Students
-  - policy: PermitAccess
+  - policy: Research
     usergroup: research
 #    vlan: Restricted
     sgt: Research
-  - policy: PermitAccess
+  - policy: Printers
     usergroup: Printers
 #    vlan: Restricted
     sgt: Printers
-  - policy: PermitAccess
+  - policy: IPCamera
     usergroup: IPCamera
 #    vlan: Restricted
     sgt: IPCamera
-  - policy: PermitAccess
+  - policy: NVR
     usergroup: NVR
 #    vlan: Retricted
     sgt: NVR     

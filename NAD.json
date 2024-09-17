@@ -1,0 +1,58 @@
+{
+    "NetworkDevice": {
+        "id": "97f315f0-e2e6-11ee-a2a1-ba373629cd5a",
+        "name": "dud",
+        "description": "",
+        "authenticationSettings": {
+            "networkProtocol": "RADIUS",
+            "radiusSharedSecret": "cisco123",
+            "enableKeyWrap": false,
+            "dtlsRequired": false,
+            "keyEncryptionKey": "",
+            "messageAuthenticatorCodeKey": "",
+            "keyInputFormat": "ASCII",
+            "enableMultiSecret": "false"
+        },
+        "trustsecsettings": {
+            "deviceAuthenticationSettings": {
+                "sgaDeviceId": "dud",
+                "sgaDevicePassword": "cisco123"
+            },
+            "sgaNotificationAndUpdates": {
+                "downlaodEnvironmentDataEveryXSeconds": 86400,
+                "downlaodPeerAuthorizationPolicyEveryXSeconds": 86400,
+                "reAuthenticationEveryXSeconds": 86400,
+                "downloadSGACLListsEveryXSeconds": 86400,
+                "otherSGADevicesToTrustThisDevice": true,
+                "sendConfigurationToDevice": true,
+                "sendConfigurationToDeviceUsing": "ENABLE_USING_COA",
+                "coaSourceHost": "ise-34-434.cts.local"
+            },
+            "deviceConfigurationDeployment": {
+                "includeWhenDeployingSGTUpdates": true,
+                "enableModePassword": "nbv_1234",
+                "execModePassword": "nbv_1234",
+                "execModeUsername": "admin"
+            },
+            "pushIdSupport": "false"
+        },
+        "profileName": "Cisco",
+        "coaPort": 1700,
+        "link": {
+            "rel": "self",
+            "href": "https://172.23.41.33/ers/config/networkdevice/97f315f0-e2e6-11ee-a2a1-ba373629cd5a",
+            "type": "application/json"
+        },
+        "NetworkDeviceIPList": [
+            {
+                "ipaddress": "1.1.1.1",
+                "mask": 32
+            }
+        ],
+        "NetworkDeviceGroupList": [
+            "Location#All Locations",
+            "IPSEC#Is IPSEC Device#No",
+            "Device Type#All Device Types"
+        ]
+    }
+}
